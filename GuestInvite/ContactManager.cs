@@ -66,29 +66,26 @@
 
         private void BtnSaveContactClick(object sender, EventArgs e)
         {
-            this.RemoveFocusFromDetailControls();
+            if (this.validationProvider.IsContactDetailsContainingErrors(ref this.grbContactInfo))
+            {
+                MessageBox.Show("Cannot save. Please correct errors");
+                return;
+            }
 
             Contact contactToSave = this.PrepareContactToSave();
 
-            if (!this.validationProvider.AreRequiredFieldsFilled(ref this.grbContactInfo))
+            if (this.btnSaveContact.Tag != null)
             {
-                this.validationProvider.ShowEmptyRequiredFields(ref this.grbContactInfo, ref this.errValidationErrorProvider);
-                MessageBox.Show("Not All Required Fields has been Filled!");
+                this.SaveContactEdited(contactToSave);
             }
-
-
-
-            //if (this.btnSaveContact.Tag != null)
-            //{
-            //    this.SaveContactEdited(contactToSave);
-            //}
-            //else
-            //{
-            //    this.SaveContactNew(contactToSave);
-            //}
+            else
+            {
+                this.SaveContactNew(contactToSave);
+            }
 
             Functions.SerializationFunctions.SerializeContacts();
             this.PopulateContactsList();
+            this.DisableAllContactDetailsControls();
         }
 
         private void RemoveFocusFromDetailControls()
@@ -136,17 +133,14 @@
         private void BtnEditContactClick(object sender, EventArgs e)
         {
             this.EnableAllContactDetailsControls();
-            Contact selectedContact = new Contact();
+            var selectedContact = (Contact)this.lstContacts.SelectedItems[0].Tag;
 
             this.grbContactInfo.Visible = true;
 
-            foreach (ListViewItem selectedItem in this.lstContacts.SelectedItems)
-            {
-                selectedContact = (Contact)selectedItem.Tag;
-            }
 
             this.btnSaveContact.Tag = selectedContact;
             this.PopulateContactDetails(selectedContact);
+            this.ShowContactDetailsProblems();
         }
 
         private void PopulateContactDetails(Contact contact)
@@ -162,27 +156,11 @@
             this.cbxSex.SelectedItem = (object)contact.Sex;
         }
 
-        private void TbxEmailValidating(object sender, CancelEventArgs e)
-        {
-            Dictionary<string, Color> problems = new Dictionary<string, Color>();
-
-            problems = this.validationProvider.GetContactDetailsProblems(ref this.grbContactInfo);
-            this.infInfos.ResetErrors();
-            this.infInfos.AddErrors(problems);
-        }
-
         private void LstContactsSelectedIndexChanged(object sender, EventArgs e)
         {
+            this.DisableAllContactDetailsControls();
             this.ClearAllContactDetailsControls();
             this.ShowSelectedContactDetails();
-            this.DisableAllContactDetailsControls();
-            this.validationProvider.ShowEmptyRequiredFields(ref this.grbContactInfo, ref this.errValidationErrorProvider);
-
-            if (this.validationProvider.IsContactDetailsContainingErrors(ref this.grbContactInfo))
-            {
-                //this.validationProvider.ShowValidationInfo();
-            }
-
 
             this.grbContactInfo.Visible = true;
         }
@@ -229,10 +207,44 @@
 
         private void TextboxesTextChanged(object sender, EventArgs e)
         {
+            if (!((TextBox)sender).Enabled == false)
+            {
+                this.ShowContactDetailsProblems();
+            }
+
+        }
+
+        private void ShowContactDetailsProblems()
+        {
             Dictionary<string, Color> problems = new Dictionary<string, Color>();
             problems = this.validationProvider.GetContactDetailsProblems(ref this.grbContactInfo);
+            this.infInfos.ResetErrors();
             this.infInfos.AddErrors(problems);
             this.validationProvider.ShowEmptyRequiredFields(ref this.grbContactInfo, ref this.errValidationErrorProvider);
+
+            if (!this.validationProvider.IsMailValid(ref this.grbContactInfo))
+            {
+                this.validationProvider.ShowInvalidMailIcon(ref this.grbContactInfo, ref this.errValidationErrorProvider);
+            }
+        }
+
+        private void BtnRemoveContactClick(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to remove this contact?",
+                "Confirmation",
+                MessageBoxButtons.OKCancel);
+            if (result == DialogResult.Cancel)
+            {
+                this.DisableAllContactDetailsControls();
+                this.PopulateContactDetails((Contact)this.lstContacts.SelectedItems[0].Tag);
+                return;
+            }
+
+            Contact contactToRemove = (Contact)this.lstContacts.SelectedItems[0].Tag;
+            Globals.ContactsInSystem.Remove(contactToRemove);
+            SerializationFunctions.SerializeContacts();
+            this.PopulateContactsList();
         }
     }
 }

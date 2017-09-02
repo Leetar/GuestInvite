@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grbContacts = new System.Windows.Forms.GroupBox();
             this.btnEditContact = new System.Windows.Forms.Button();
             this.lstContacts = new System.Windows.Forms.ListView();
             this.FirstName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -60,26 +60,25 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.errValidationErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.groupBox1.SuspendLayout();
+            this.grbContacts.SuspendLayout();
             this.grbContactInfo.SuspendLayout();
             this.pnlToFill.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errValidationErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grbContacts
             // 
-            this.groupBox1.Controls.Add(this.btnEditContact);
-            this.groupBox1.Controls.Add(this.lstContacts);
-            this.groupBox1.Controls.Add(this.btnRemoveContact);
-            this.groupBox1.Controls.Add(this.btnAddContact);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(428, 421);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.grbContacts.Controls.Add(this.btnEditContact);
+            this.grbContacts.Controls.Add(this.lstContacts);
+            this.grbContacts.Controls.Add(this.btnRemoveContact);
+            this.grbContacts.Controls.Add(this.btnAddContact);
+            this.grbContacts.Location = new System.Drawing.Point(12, 12);
+            this.grbContacts.Name = "grbContacts";
+            this.grbContacts.Size = new System.Drawing.Size(428, 421);
+            this.grbContacts.TabIndex = 0;
+            this.grbContacts.TabStop = false;
+            this.grbContacts.Text = "Manage Contacts";
             // 
             // btnEditContact
             // 
@@ -125,11 +124,12 @@
             // colSex
             // 
             this.colSex.Text = "Sex";
+            this.colSex.Width = 80;
             // 
             // colMail
             // 
             this.colMail.Text = "E-Mail";
-            this.colMail.Width = 150;
+            this.colMail.Width = 130;
             // 
             // btnRemoveContact
             // 
@@ -139,6 +139,7 @@
             this.btnRemoveContact.TabIndex = 1;
             this.btnRemoveContact.Text = "Remove ";
             this.btnRemoveContact.UseVisualStyleBackColor = true;
+            this.btnRemoveContact.Click += new System.EventHandler(this.BtnRemoveContactClick);
             // 
             // btnAddContact
             // 
@@ -247,7 +248,6 @@
             this.tbxEmail.Size = new System.Drawing.Size(136, 20);
             this.tbxEmail.TabIndex = 15;
             this.tbxEmail.TextChanged += new System.EventHandler(this.TextboxesTextChanged);
-            this.tbxEmail.Validating += new System.ComponentModel.CancelEventHandler(this.TbxEmailValidating);
             // 
             // tbxApartment
             // 
@@ -365,11 +365,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "First name";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // errValidationErrorProvider
             // 
             this.errValidationErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
@@ -381,10 +376,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(698, 445);
             this.Controls.Add(this.grbContactInfo);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grbContacts);
             this.Name = "ContactManager";
             this.Text = "ContactManager";
-            this.groupBox1.ResumeLayout(false);
+            this.grbContacts.ResumeLayout(false);
             this.grbContactInfo.ResumeLayout(false);
             this.grbContactInfo.PerformLayout();
             this.pnlToFill.ResumeLayout(false);
@@ -396,7 +391,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grbContacts;
         private System.Windows.Forms.Button btnRemoveContact;
         private System.Windows.Forms.Button btnAddContact;
         private System.Windows.Forms.GroupBox grbContactInfo;
@@ -416,7 +411,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ListView lstContacts;
         private System.Windows.Forms.Button btnEditContact;
         private System.Windows.Forms.Button btnSaveContact;

@@ -56,7 +56,7 @@
                     continue;
                 }
 
-                if (string.IsNullOrEmpty(control.Text))
+                if (control.Name != "tbxEmail" && string.IsNullOrEmpty(control.Text))
                 {
                     errorProvider.SetError(control, "Data wrong or not submitted.");
                     this.numOfErrors++;
@@ -68,24 +68,20 @@
             }
         }
 
+        public void ShowInvalidMailIcon(ref GroupBox groupBox, ref ErrorProvider errorProvider)
+        {
+            errorProvider.SetError(groupBox.Controls["pnlToFill"].Controls["tbxEmail"], "Not a valid email address");
+        }
+
         public bool IsContactDetailsContainingErrors(ref GroupBox groupBox)
         {
-            int errorsNum = 0;
 
-            foreach (Control control in groupBox.Controls)
+            if (this.IsMailValid(ref groupBox) && this.AreRequiredFieldsFilled(ref groupBox))
             {
-                if (!this.requiredControls.Contains(control))
-                {
-                    continue;
-                }
-
-                if (string.IsNullOrEmpty(control.Text))
-                {
-                    return true;
-                }
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         public bool IsMailValid(ref GroupBox groupBox)
@@ -138,7 +134,7 @@
                 }
             }
 
-            if (controlsOk == this.requiredControls.Count)
+            if (controlsOk == pnlToFill.Controls.Count - this.requiredControls.Count)
             {
                 return true;
             }

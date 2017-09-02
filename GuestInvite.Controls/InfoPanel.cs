@@ -48,10 +48,7 @@ namespace GuestInvite.Controls
 
         public void ResetErrors()
         {
-            foreach (Control control in this.Controls)
-            {
-                this.Controls.Remove(control);
-            }
+            this.Controls.Clear();
         }
     }
 }
