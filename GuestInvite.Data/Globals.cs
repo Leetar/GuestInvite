@@ -14,6 +14,8 @@
 
         public static readonly string ContactsSerializedFilename = "Contacts.xml";
 
+        public static readonly string SettingsSerializedFilename = "UserSettings.xml";
+
         static Globals()
         {
             SerializedObjectsPathField = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\XmlData\";
@@ -22,8 +24,12 @@
 
         public static ContactsList ContactsInSystem { get; set; } = new ContactsList();
 
-        public static long LastUsedId { get; set; }
+        public static UserSettings SettingsForUser { get; set; } = new UserSettings();
 
         public static string SerializedObjectsPath { get => SerializedObjectsPathField; }
+
+
+
+        public static int DisparityTreshold { get; set; }
     }
 }

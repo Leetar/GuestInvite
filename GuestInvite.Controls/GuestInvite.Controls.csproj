@@ -50,7 +50,57 @@
     <Compile Include="InfoPanel.Designer.cs">
       <DependentUpon>InfoPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="MovableItemsListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MovableItemsListView.Designer.cs">
+      <DependentUpon>MovableItemsListView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MovableItemsListView.resx">
+      <DependentUpon>MovableItemsListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrowdoubleleft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrowdoubleright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrowleft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrowright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrowdoubleleft1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrowdoubleright1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrowleft1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrowright1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GuestInvite.Data\GuestInvite.Data.csproj">
+      <Project>{ee3448fd-2488-4ecd-b3e9-a577a116b67a}</Project>
+      <Name>GuestInvite.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

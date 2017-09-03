@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace GuestInvite
+﻿namespace GuestInvite
 {
+    using System;
+    using System.Windows.Forms;
+
     using GuestInvite.Functions;
     using GuestInvite.UI;
 
@@ -20,7 +17,8 @@ namespace GuestInvite
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             SerializationFunctions.DeserializeContacts();
-            Application.Run(new MainWindow());
+            SerializationFunctions.DeserializeSettings();
+            Application.Run(new EventManager());
         }
     }
 }

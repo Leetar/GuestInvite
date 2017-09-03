@@ -41,5 +41,9 @@ namespace GuestInvite.Data
         public string Email { get; set; }
 
         public Genders Sex { get; set; }
+
+        public bool HasResponded { get; set; }
+
+        public bool Response { get; set; }
     }
 }

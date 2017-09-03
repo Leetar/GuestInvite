@@ -30,6 +30,11 @@
 
         private List<Control> RequiredControls { get; set; } = new List<Control>();
 
+        private void CloseFormClosing(object sender, FormClosingEventArgs e)
+        {
+            Functions.SerializationFunctions.SerializeContacts();
+        }
+
         private void SetRequiredControls()
         {
             this.RequiredControls.Add(this.tbxFirstName);

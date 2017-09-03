@@ -379,6 +379,7 @@
             this.Controls.Add(this.grbContacts);
             this.Name = "ContactManager";
             this.Text = "ContactManager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CloseFormClosing);
             this.grbContacts.ResumeLayout(false);
             this.grbContactInfo.ResumeLayout(false);
             this.grbContactInfo.PerformLayout();

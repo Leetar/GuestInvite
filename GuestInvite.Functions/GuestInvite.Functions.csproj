@@ -47,6 +47,7 @@
     <Compile Include="FormValidationFunctions.cs" />
     <Compile Include="IdOperations.cs" />
     <Compile Include="ContactFunctions.cs" />
+    <Compile Include="UserSettingsFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerializationFunctions.cs" />
   </ItemGroup>
