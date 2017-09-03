@@ -35,5 +35,10 @@
             settingsFunctions.SaveUserSettings();
 
         }
+
+        private void UserSettingsForm_Load(object sender, EventArgs e)
+        {
+            this.nupGender.Value = Globals.SettingsForUser.DisparityTreshold;
+        }
     }
 }

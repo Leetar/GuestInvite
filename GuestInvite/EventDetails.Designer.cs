@@ -38,6 +38,7 @@
             this.dtpEventTime = new System.Windows.Forms.DateTimePicker();
             this.lblDisparity = new System.Windows.Forms.Label();
             this.movableItemsListView1 = new GuestInvite.Controls.MovableItemsListView();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbxEventName
@@ -68,7 +69,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 23);
             this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Save Event";
+            this.btnSave.Text = "Save & Close";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSaveClick);
             // 
@@ -137,11 +138,11 @@
             // lblDisparity
             // 
             this.lblDisparity.AutoSize = true;
-            this.lblDisparity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblDisparity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblDisparity.ForeColor = System.Drawing.Color.Red;
             this.lblDisparity.Location = new System.Drawing.Point(108, 406);
             this.lblDisparity.Name = "lblDisparity";
-            this.lblDisparity.Size = new System.Drawing.Size(51, 16);
+            this.lblDisparity.Size = new System.Drawing.Size(47, 15);
             this.lblDisparity.TabIndex = 12;
             this.lblDisparity.Text = "label7";
             this.lblDisparity.Visible = false;
@@ -155,11 +156,22 @@
             this.movableItemsListView1.TabIndex = 3;
             this.movableItemsListView1.ItemMoved += new System.EventHandler(this.MovableItemsListView1ItemMoved);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(12, 370);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(90, 23);
+            this.btnCancel.TabIndex = 13;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancelClick);
+            // 
             // EventDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 428);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblDisparity);
             this.Controls.Add(this.dtpEventTime);
             this.Controls.Add(this.label6);
@@ -195,5 +207,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dtpEventTime;
         private System.Windows.Forms.Label lblDisparity;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

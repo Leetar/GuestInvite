@@ -16,6 +16,11 @@
 
         public string Description { get; set; }
 
+        public int GetNumberOfInviteeResponses()
+        {
+            return this.InvitedGuests.FindAll(x => x.HasResponded == true).Count;
+        }
+
         public Tuple<int, Contact.Genders> GetSexDisparity()
         {
             int male = this.InvitedGuests.FindAll(x => x.Sex == Contact.Genders.Male).Count;

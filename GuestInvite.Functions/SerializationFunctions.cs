@@ -82,5 +82,37 @@ namespace GuestInvite.Functions
                 }
             }
         }
+
+        public static void SerializeEvents()
+        {
+            if (!Directory.Exists(Globals.SerializedObjectsPath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(Globals.SerializedObjectsPath) ?? throw new InvalidOperationException());
+            }
+
+            XmlSerializer serializer = new XmlSerializer(Globals.EventsInSystem.GetType());
+
+            using (Stream fs = new FileStream(Globals.SerializedObjectsPath + Globals.EventsSerializedFilename, FileMode.Create))
+            {
+                using (XmlWriter writer = new XmlTextWriter(fs, Encoding.Unicode))
+                {
+                    serializer.Serialize(writer, Globals.EventsInSystem);
+                    writer.Close();
+                }
+            }
+        }
+
+        public static void DeserializeEvents()
+        {
+            if (File.Exists(Globals.SerializedObjectsPath + Globals.EventsSerializedFilename))
+            {
+                XmlSerializer serializer = new XmlSerializer(Globals.ContactsInSystem.GetType());
+
+                using (FileStream fileStream = new FileStream(Globals.SerializedObjectsPath + Globals.EventsSerializedFilename, FileMode.Open))
+                {
+                    Globals.EventsInSystem = (EventList)serializer.Deserialize(fileStream);
+                }
+            }
+        }
     }
 }

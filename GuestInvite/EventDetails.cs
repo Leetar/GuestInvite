@@ -10,11 +10,15 @@ using System.Windows.Forms;
 
 namespace GuestInvite.UI
 {
+    using System.Runtime.CompilerServices;
+
     using GuestInvite.Data;
     using GuestInvite.Functions;
 
     public partial class EventDetails : Form
     {
+        private Event editedEvent;
+
         public EventDetails()
         {
             this.InitializeComponent();
@@ -23,8 +27,11 @@ namespace GuestInvite.UI
 
         public EventDetails(GuestInvite.Data.Event editedEvent)
         {
-
+            editedEvent = new Event();
+            this.editedEvent = editedEvent;
         }
+
+
 
         private void BindEditedEventDetails(GuestInvite.Data.Event editedEvent)
         {
@@ -52,24 +59,74 @@ namespace GuestInvite.UI
             return eventSoFar;
         }
 
-        private void SetDisparityWarning()
+        private void SetDisparityWarning(Tuple<int, Contact.Genders> disparity)
         {
+            if (disparity.Item1 < Globals.SettingsForUser.DisparityTreshold || disparity.Item1 == 0)
+            {
+                this.lblDisparity.Visible = false;
+                return;
+            }
 
+            this.lblDisparity.Visible = true;
+            this.lblDisparity.Text = disparity.Item1.ToString() + " more " + disparity.Item2.ToString()
+                                     + "(s) than other genders";
         }
 
         private void BtnSaveClick(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.tbxEventName.Text))
+            {
+                MessageBox.Show("Please Fill event name", "warning");
+                return;
+            }
+
+            if (this.editedEvent != null)
+            {
+                this.saveEventEdited();
+                MessageBox.Show("Saved successfully");
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+
+            this.SaveEventNew();
+            MessageBox.Show("Saved successfully");
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void SaveEventNew()
+        {
+            Globals.EventsInSystem.Add(this.PrepareEventToSave());
+            Functions.SerializationFunctions.SerializeEvents();
+        }
+
+        private void saveEventEdited()
+        {
+            Globals.EventsInSystem.Replace(this.editedEvent, this.PrepareEventToSave());
+            Functions.SerializationFunctions.SerializeEvents();
+        }
+
+        private Event PrepareEventToSave()
         {
             Event eventToSave = new Event();
             eventToSave.Description = this.tbxEventDescription.Text;
             eventToSave.Name = this.tbxEventName.Text;
             eventToSave.InvitedGuests = this.movableItemsListView1.GetSelectedContacts();
             eventToSave.EventDate = this.dtpEventDate.Value.Date + this.dtpEventTime.Value.TimeOfDay;
+
+            return eventToSave;
         }
 
         private void MovableItemsListView1ItemMoved(object sender, EventArgs e)
         {
             Event eventSoFar = this.GetEventSoFar();
-            Tuple<int, Contact.Genders> disparity = eventSoFar.GetSexDisparity();
+            this.SetDisparityWarning(eventSoFar.GetSexDisparity());
+        }
+
+        private void BtnCancelClick(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

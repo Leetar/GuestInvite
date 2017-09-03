@@ -16,6 +16,8 @@
 
         public static readonly string SettingsSerializedFilename = "UserSettings.xml";
 
+        public static readonly string EventsSerializedFilename = "Events.xml";
+
         static Globals()
         {
             SerializedObjectsPathField = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\XmlData\";
@@ -26,10 +28,8 @@
 
         public static UserSettings SettingsForUser { get; set; } = new UserSettings();
 
+        public static EventList EventsInSystem { get; set; } = new EventList();
+
         public static string SerializedObjectsPath { get => SerializedObjectsPathField; }
-
-
-
-        public static int DisparityTreshold { get; set; }
     }
 }

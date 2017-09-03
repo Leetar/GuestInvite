@@ -39,13 +39,13 @@
             this.btnEventAdd = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.manageContactsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grbEventDetails = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.colGuest = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colResponse = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grbEventDetails.SuspendLayout();
@@ -113,6 +113,7 @@
             this.btnEventEdit.TabIndex = 1;
             this.btnEventEdit.Text = "Edit Event";
             this.btnEventEdit.UseVisualStyleBackColor = true;
+            this.btnEventEdit.Click += new System.EventHandler(this.BtnEventEditClick);
             // 
             // btnEventAdd
             // 
@@ -142,6 +143,13 @@
             this.manageContactsToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
             this.manageContactsToolStripMenuItem.Text = "Manage Contacts";
             this.manageContactsToolStripMenuItem.Click += new System.EventHandler(this.ContactManagerClick);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItemClick);
             // 
             // groupBox1
             // 
@@ -201,13 +209,6 @@
             this.colResponse.HeaderText = "Response";
             this.colResponse.Name = "colResponse";
             // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItemClick);
-            // 
             // EventManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,6 +220,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "EventManager";
             this.Text = "Event Manager";
+            this.Load += new System.EventHandler(this.EventManagerLoad);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

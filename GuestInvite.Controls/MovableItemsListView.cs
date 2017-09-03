@@ -33,8 +33,11 @@
 
         public ContactsList GetSelectedContacts()
         {
+            this.eventsGuestList.Clear();
+
             foreach (ListViewItem item in this.lstRight.Items)
             {
+                
                 this.eventsGuestList.Add((Contact)item.Tag);
             }
             return this.eventsGuestList;
