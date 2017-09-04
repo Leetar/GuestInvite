@@ -138,8 +138,13 @@
 
         private void BtnEditContactClick(object sender, EventArgs e)
         {
+            if (this.lstContacts.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
             this.EnableAllContactDetailsControls();
-            var selectedContact = (Contact)this.lstContacts.SelectedItems[0].Tag;
+            Contact selectedContact = (Contact)this.lstContacts.SelectedItems[0].Tag;
 
             this.grbContactInfo.Visible = true;
 
