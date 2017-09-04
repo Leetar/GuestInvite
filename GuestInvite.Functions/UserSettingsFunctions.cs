@@ -9,8 +9,14 @@
 
 namespace GuestInvite.Functions
 {
+    /// <summary>
+    /// The user settings functions. Contains function that can be performed of UserSettings class.
+    /// </summary>
     public class UserSettingsFunctions
     {
+        /// <summary>
+        /// The save user settings. Serializes settings.
+        /// </summary>
         public void SaveUserSettings()
         {
             SerializationFunctions.SerializeSettings();

@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ValidationEnums.cs" company="Adam Litarowicz">
+//   a
+// </copyright>
+// <summary>
+//   Defines the ValidationEnums type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GuestInvite.Data
 {
     public static class ValidationEnums
     {
+        /// <summary>
+        /// The validation info types. types of warning messages.
+        /// </summary>
         public enum ValidationInfoTypes
         {
             Error = 0,

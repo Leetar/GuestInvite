@@ -82,7 +82,7 @@
             this.Controls.Add(this.label1);
             this.Name = "UserSettingsForm";
             this.Text = "UserSettings";
-            this.Load += new System.EventHandler(this.UserSettingsForm_Load);
+            this.Load += new System.EventHandler(this.UserSettingsFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.nupGender)).EndInit();
             this.pnlSettings.ResumeLayout(false);
             this.ResumeLayout(false);

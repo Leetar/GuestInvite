@@ -1,22 +1,19 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Class1.cs" company="adasd">
-//   asd
+// <copyright file="Class1.cs" company="Adam Litarowicz">
+//   a
 // </copyright>
 // <summary>
-//   Defines the Class1 type.
+//   Defines the ContactFunctions type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace GuestInvite.Functions
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     using GuestInvite.Data;
 
+    /// <summary>
+    /// The contact functions. Holds methods to operate on contacts.
+    /// </summary>
     public static class ContactFunctions
     {
         public static void AddContact(Contact contact)

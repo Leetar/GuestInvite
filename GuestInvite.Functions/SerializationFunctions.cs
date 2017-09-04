@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SerializationFunctions.cs" company="Adam Litarowicz">
-//   a
+//   MIT license
 // </copyright>
 // <summary>
 //   Defines the SerializationFunctions type. Provides functions to serialize data into xml format, and to deserialize them.
@@ -10,7 +10,6 @@
 namespace GuestInvite.Functions
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Text;
     using System.Xml;
@@ -19,6 +18,9 @@ namespace GuestInvite.Functions
 
     public static class SerializationFunctions
     {
+        /// <summary>
+        /// The serialize settings. Serializes user settings into a xml format.
+        /// </summary>
         public static void SerializeSettings()
         {
             if (!Directory.Exists(Globals.SerializedObjectsPath))
@@ -38,19 +40,27 @@ namespace GuestInvite.Functions
             }
         }
 
+        /// <summary>
+        /// The deserialize settings. deserializes user settings into a xml format.
+        /// </summary>
         public static void DeserializeSettings()
         {
-            if (File.Exists(Globals.SerializedObjectsPath + Globals.ContactsSerializedFilename))
+            if (!File.Exists(Globals.SerializedObjectsPath + Globals.ContactsSerializedFilename))
             {
-                XmlSerializer serializer = new XmlSerializer(Globals.SettingsForUser.GetType());
+                return;
+            }
 
-                using (FileStream fileStream = new FileStream(Globals.SerializedObjectsPath + Globals.SettingsSerializedFilename, FileMode.Open))
-                {
-                    Globals.SettingsForUser = (UserSettings)serializer.Deserialize(fileStream);
-                }
+            XmlSerializer serializer = new XmlSerializer(Globals.SettingsForUser.GetType());
+
+            using (FileStream fileStream = new FileStream(Globals.SerializedObjectsPath + Globals.SettingsSerializedFilename, FileMode.Open))
+            {
+                Globals.SettingsForUser = (UserSettings)serializer.Deserialize(fileStream);
             }
         }
 
+        /// <summary>
+        /// The serialize contacts. Serializes contacts created by user.
+        /// </summary>
         public static void SerializeContacts()
         {
             if (!Directory.Exists(Globals.SerializedObjectsPath))
@@ -70,19 +80,27 @@ namespace GuestInvite.Functions
             }
         }
 
+        /// <summary>
+        /// The deserialize contacts. Deserializes contacts added by user.
+        /// </summary>
         public static void DeserializeContacts()
         {
-            if (File.Exists(Globals.SerializedObjectsPath + Globals.ContactsSerializedFilename))
+            if (!File.Exists(Globals.SerializedObjectsPath + Globals.ContactsSerializedFilename))
             {
-                XmlSerializer serializer = new XmlSerializer(Globals.ContactsInSystem.GetType());
+                return;
+            }
 
-                using (FileStream fileStream = new FileStream(Globals.SerializedObjectsPath + Globals.ContactsSerializedFilename, FileMode.Open))
-                {
-                    Globals.ContactsInSystem = (ContactsList)serializer.Deserialize(fileStream);
-                }
+            XmlSerializer serializer = new XmlSerializer(Globals.ContactsInSystem.GetType());
+
+            using (FileStream fileStream = new FileStream(Globals.SerializedObjectsPath + Globals.ContactsSerializedFilename, FileMode.Open))
+            {
+                Globals.ContactsInSystem = (ContactsList)serializer.Deserialize(fileStream);
             }
         }
 
+        /// <summary>
+        /// The serialize events. Serializes events created by the user into xml format.
+        /// </summary>
         public static void SerializeEvents()
         {
             if (!Directory.Exists(Globals.SerializedObjectsPath))
@@ -102,16 +120,21 @@ namespace GuestInvite.Functions
             }
         }
 
+        /// <summary>
+        /// The deserialize events. Deserializes events from xml.
+        /// </summary>
         public static void DeserializeEvents()
         {
-            if (File.Exists(Globals.SerializedObjectsPath + Globals.EventsSerializedFilename))
+            if (!File.Exists(Globals.SerializedObjectsPath + Globals.EventsSerializedFilename))
             {
-                XmlSerializer serializer = new XmlSerializer(Globals.EventsInSystem.GetType());
+                return;
+            }
 
-                using (FileStream fileStream = new FileStream(Globals.SerializedObjectsPath + Globals.EventsSerializedFilename, FileMode.Open))
-                {
-                    Globals.EventsInSystem = (EventList)serializer.Deserialize(fileStream);
-                }
+            XmlSerializer serializer = new XmlSerializer(Globals.EventsInSystem.GetType());
+
+            using (FileStream fileStream = new FileStream(Globals.SerializedObjectsPath + Globals.EventsSerializedFilename, FileMode.Open))
+            {
+                Globals.EventsInSystem = (EventList)serializer.Deserialize(fileStream);
             }
         }
     }

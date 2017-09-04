@@ -1,27 +1,32 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Class1.cs" company="Me">
+// <copyright file="Contact.cs" company="Me">
 //   Adam Litarowicz
 // </copyright>
 // <summary>
-//   Defines the Class1 type.
+//   Defines the Contact type. Contact represents person, which can be inserted into user created events.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace GuestInvite.Data
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
+    /// <summary>
+    /// The contact. Contact represents person, which can be inserted into user created events.
+    /// </summary>
     public class Contact
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Contact"/> class. Sets persons unique ID.
+        /// </summary>
         public Contact()
         {
             this.Id = Guid.NewGuid();
         }
 
+        /// <summary>
+        /// The genders. Contains genders.
+        /// </summary>
         public enum Genders
         {
             Unspecified = 0,
@@ -29,12 +34,15 @@ namespace GuestInvite.Data
             Female = 2
         }
 
+        /// <summary>
+        /// The responses. Contains responses that user can set to contact. Represents acceptance or lack thereof of invitation
+        /// </summary>
         public enum Responses
         {
-            Accepted,
-            Rejected,
-            Maybe,
-            None
+            Accepted = 1,
+            Rejected = 2,
+            Maybe = 3,
+            None = 0
         }
 
         public string FirlstName { get; set; }
@@ -55,10 +63,18 @@ namespace GuestInvite.Data
 
         public Genders Sex { get; set; }
 
-        public bool HasResponded { get; set; }
-
         public Responses Response { get; set; }
 
         public Guid Id { get; set; }
+
+        public bool GetHasResponded()
+        {
+            if (this.Response != Responses.None)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
