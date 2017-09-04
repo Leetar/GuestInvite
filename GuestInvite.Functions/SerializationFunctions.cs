@@ -45,7 +45,7 @@ namespace GuestInvite.Functions
         /// </summary>
         public static void DeserializeSettings()
         {
-            if (!File.Exists(Globals.SerializedObjectsPath + Globals.ContactsSerializedFilename))
+            if (!File.Exists(Globals.SerializedObjectsPath + Globals.SettingsSerializedFilename))
             {
                 return;
             }
