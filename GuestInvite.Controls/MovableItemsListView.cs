@@ -14,7 +14,7 @@
 
     public partial class MovableItemsListView : UserControl
     {
-        private ContactsList eventsGuestList = new ContactsList();
+        public ContactsList eventsGuestList = new ContactsList();
 
         public MovableItemsListView()
         {
@@ -37,7 +37,7 @@
 
             foreach (ListViewItem item in this.lstRight.Items)
             {
-                
+
                 this.eventsGuestList.Add((Contact)item.Tag);
             }
             return this.eventsGuestList;
@@ -45,20 +45,23 @@
 
         public void BindLists()
         {
+            this.lstLeft.Items.Clear();
+            this.lstRight.Items.Clear();
+
             foreach (Contact contact in this.AllContacts)
             {
-                if (this.eventsGuestList == null || !this.eventsGuestList.Contains(contact))
+                if (this.eventsGuestList != null && this.eventsGuestList.Where(x => x.Id == contact.Id).ToList().Count > 0)
                 {
-                    ListViewItem itemLeft = new ListViewItem(new[] { contact.FirlstName + " " + contact.LastName, contact.Sex.ToString() });
-                    itemLeft.Tag = contact;
-
-                    this.lstLeft.Items.Add(itemLeft);
+                    ListViewItem itemRight = new ListViewItem(new[] { contact.FirlstName + " " + contact.LastName, contact.Sex.ToString() });
+                    itemRight.Tag = contact;
+                    this.lstRight.Items.Add(itemRight);
                     continue;
                 }
 
-                ListViewItem itemRight = new ListViewItem(new[] { contact.FirlstName + " " + contact.LastName, contact.Sex.ToString() });
-                itemRight.Tag = contact;
-                this.lstRight.Items.Add(itemRight);
+                ListViewItem itemLeft = new ListViewItem(new[] { contact.FirlstName + " " + contact.LastName, contact.Sex.ToString() });
+                itemLeft.Tag = contact;
+
+                this.lstLeft.Items.Add(itemLeft);
             }
         }
 

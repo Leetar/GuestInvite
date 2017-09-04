@@ -110,7 +110,8 @@
                 LastName = this.tbxLastName.Text,
                 PostalCode = this.tbxPostalCode.Text,
                 Street = this.tbxStreet.Text,
-                Sex = (Contact.Genders)this.cbxSex.SelectedItem
+                Sex = (Contact.Genders)this.cbxSex.SelectedItem,
+                Response = Contact.Responses.None
             };
 
             return preparedContact;
@@ -172,7 +173,7 @@
 
         private void ClearAllContactDetailsControls()
         {
-            foreach (Control control in this.grbContactInfo.Controls)
+            foreach (Control control in this.grbContactInfo.Controls["pnlToFill"].Controls)
             {
                 if (control is TextBox)
                 {

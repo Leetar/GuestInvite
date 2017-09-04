@@ -42,14 +42,11 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grbEventDetails = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.colGuest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colResponse = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dtgEventDetails = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grbEventDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgEventDetails)).BeginInit();
             this.SuspendLayout();
             // 
             // lstEvents
@@ -63,6 +60,7 @@
             this.colGuestsInvited,
             this.colNumResponded,
             this.colSexDisparity});
+            this.lstEvents.FullRowSelect = true;
             this.lstEvents.GridLines = true;
             this.lstEvents.Location = new System.Drawing.Point(100, 19);
             this.lstEvents.MultiSelect = false;
@@ -71,6 +69,7 @@
             this.lstEvents.TabIndex = 3;
             this.lstEvents.UseCompatibleStateImageBehavior = false;
             this.lstEvents.View = System.Windows.Forms.View.Details;
+            this.lstEvents.Click += new System.EventHandler(this.LstEventsClick);
             // 
             // colEventName
             // 
@@ -104,6 +103,7 @@
             this.btnEventRemove.TabIndex = 2;
             this.btnEventRemove.Text = "Remove Event";
             this.btnEventRemove.UseVisualStyleBackColor = true;
+            this.btnEventRemove.Click += new System.EventHandler(this.BtnEventRemoveClick);
             // 
             // btnEventEdit
             // 
@@ -169,45 +169,28 @@
             this.grbEventDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grbEventDetails.Controls.Add(this.dataGridView1);
+            this.grbEventDetails.Controls.Add(this.dtgEventDetails);
             this.grbEventDetails.Location = new System.Drawing.Point(555, 27);
             this.grbEventDetails.Name = "grbEventDetails";
             this.grbEventDetails.Size = new System.Drawing.Size(357, 513);
             this.grbEventDetails.TabIndex = 5;
             this.grbEventDetails.TabStop = false;
-            this.grbEventDetails.Text = "groupBox2";
+            this.grbEventDetails.Text = "Events\' guests info (response saves automatically)";
             // 
-            // dataGridView1
+            // dtgEventDetails
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dtgEventDetails.AllowUserToAddRows = false;
+            this.dtgEventDetails.AllowUserToDeleteRows = false;
+            this.dtgEventDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colGuest,
-            this.colSex,
-            this.colResponse});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(345, 488);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // colGuest
-            // 
-            this.colGuest.HeaderText = "Guest";
-            this.colGuest.Name = "colGuest";
-            this.colGuest.ReadOnly = true;
-            // 
-            // colSex
-            // 
-            this.colSex.HeaderText = "Gender";
-            this.colSex.Name = "colSex";
-            this.colSex.ReadOnly = true;
-            // 
-            // colResponse
-            // 
-            this.colResponse.HeaderText = "Response";
-            this.colResponse.Name = "colResponse";
+            this.dtgEventDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgEventDetails.Location = new System.Drawing.Point(6, 19);
+            this.dtgEventDetails.Name = "dtgEventDetails";
+            this.dtgEventDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgEventDetails.Size = new System.Drawing.Size(345, 488);
+            this.dtgEventDetails.TabIndex = 0;
+            this.dtgEventDetails.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DtgEventDetailsEditingControlShowing);
             // 
             // EventManager
             // 
@@ -225,7 +208,7 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.grbEventDetails.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgEventDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,10 +228,7 @@
         private System.Windows.Forms.ColumnHeader colSexDisparity;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox grbEventDetails;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colGuest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSex;
-        private System.Windows.Forms.DataGridViewComboBoxColumn colResponse;
+        private System.Windows.Forms.DataGridView dtgEventDetails;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
     }
 }

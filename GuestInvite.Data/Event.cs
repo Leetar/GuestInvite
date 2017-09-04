@@ -8,7 +8,14 @@
 
     public class Event
     {
+        public Event()
+        {
+            this.Id = Guid.NewGuid();
+        }
+
         public string Name { get; set; }
+
+        public Guid Id { get; set; }
 
         public ContactsList InvitedGuests { get; set; }
 

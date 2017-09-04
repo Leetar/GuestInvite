@@ -27,18 +27,24 @@ namespace GuestInvite.UI
 
         public EventDetails(GuestInvite.Data.Event editedEvent)
         {
-            editedEvent = new Event();
+            this.InitializeComponent();
+            this.BindContacts();
+
+            this.editedEvent = new Event();
             this.editedEvent = editedEvent;
+            this.BindEditedEventDetails();
         }
 
 
 
-        private void BindEditedEventDetails(GuestInvite.Data.Event editedEvent)
+        private void BindEditedEventDetails()
         {
-            this.tbxEventName.Text = editedEvent.Name;
-            this.tbxEventDescription.Text = editedEvent.Description;
-            this.dtpEventDate.Value = editedEvent.EventDate;
-            this.dtpEventTime.Value = editedEvent.EventDate;
+            this.tbxEventName.Text = this.editedEvent.Name;
+            this.tbxEventDescription.Text = this.editedEvent.Description;
+            this.dtpEventDate.Value = this.editedEvent.EventDate;
+            this.dtpEventTime.Value = this.editedEvent.EventDate;
+            this.movableItemsListView1.eventsGuestList = this.editedEvent.InvitedGuests;
+            this.movableItemsListView1.BindLists();
         }
 
         private void BindContacts()
@@ -82,10 +88,11 @@ namespace GuestInvite.UI
 
             if (this.editedEvent != null)
             {
-                this.saveEventEdited();
+                this.SaveEventEdited();
                 MessageBox.Show("Saved successfully");
                 this.DialogResult = DialogResult.OK;
                 this.Close();
+                return;
             }
 
             this.SaveEventNew();
@@ -100,7 +107,7 @@ namespace GuestInvite.UI
             Functions.SerializationFunctions.SerializeEvents();
         }
 
-        private void saveEventEdited()
+        private void SaveEventEdited()
         {
             Globals.EventsInSystem.Replace(this.editedEvent, this.PrepareEventToSave());
             Functions.SerializationFunctions.SerializeEvents();

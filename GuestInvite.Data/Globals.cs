@@ -18,6 +18,8 @@
 
         public static readonly string EventsSerializedFilename = "Events.xml";
 
+        public static readonly int? LastUsedId = null;
+
         static Globals()
         {
             SerializedObjectsPathField = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\XmlData\";

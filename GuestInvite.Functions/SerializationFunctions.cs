@@ -106,7 +106,7 @@ namespace GuestInvite.Functions
         {
             if (File.Exists(Globals.SerializedObjectsPath + Globals.EventsSerializedFilename))
             {
-                XmlSerializer serializer = new XmlSerializer(Globals.ContactsInSystem.GetType());
+                XmlSerializer serializer = new XmlSerializer(Globals.EventsInSystem.GetType());
 
                 using (FileStream fileStream = new FileStream(Globals.SerializedObjectsPath + Globals.EventsSerializedFilename, FileMode.Open))
                 {

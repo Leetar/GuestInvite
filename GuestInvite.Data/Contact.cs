@@ -17,11 +17,24 @@ namespace GuestInvite.Data
 
     public class Contact
     {
+        public Contact()
+        {
+            this.Id = Guid.NewGuid();
+        }
+
         public enum Genders
         {
             Unspecified = 0,
             Male = 1,
             Female = 2
+        }
+
+        public enum Responses
+        {
+            Accepted,
+            Rejected,
+            Maybe,
+            None
         }
 
         public string FirlstName { get; set; }
@@ -44,6 +57,8 @@ namespace GuestInvite.Data
 
         public bool HasResponded { get; set; }
 
-        public bool Response { get; set; }
+        public Responses Response { get; set; }
+
+        public Guid Id { get; set; }
     }
 }
